@@ -9,6 +9,7 @@ int main(int argc, char **argv)
 	char buf[256] = {0};
 
 	printf("Enter code to execute.\n");
+	fflush(stdout);
 
 	fgets(buf, sizeof(buf), stdin);
 	
