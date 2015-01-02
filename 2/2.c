@@ -27,7 +27,7 @@ int main(int argc, char **argv)
 	int b;
 	int result;
 
-//	if (ptrace(PTRACE_TRACEME, 0, NULL, 0) == -1) exit(1);
+	if (ptrace(PTRACE_TRACEME, 0, NULL, 0) == -1) exit(1);
 
 	printf("What would you like to do?\n"
 		"1. Add two numbers\n"
