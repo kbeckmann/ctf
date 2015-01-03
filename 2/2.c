@@ -34,12 +34,12 @@ int main(int argc, char **argv)
 		"2. Subtract two numbers\n"
 		"3. Multiply two numbers\n"
 		"4. Divide two numbers\n");
+	fflush(stdout);
 
 	readIntegers(&method, &a);
 
 	printf("You chose: %d\n", method);
 	printf("Enter two numbers to do math with, e.g. [3 4]\n");
-
 	fflush(stdout);
 
 	readIntegers(&a, &b);
