@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS+=-g
+CFLAGS+=-g -Wall -Wextra -ansi
 LDFLAGS+=-z execstack
 SOURCES=$(wildcard *.c)
 OBJECTS=$(SOURCES:.c=.o)

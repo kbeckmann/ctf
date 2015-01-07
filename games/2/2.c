@@ -15,26 +15,26 @@ char buf[256];
 
 void readIntegers(int *a, int *b)
 {
-	int ret = 0;
 	fgets(buf, sizeof(buf), stdin);
 	sscanf(buf, "%d %d", a, b);
 }
 
 int main(int argc, char **argv)
 {
+	(void)argc;
+	(void)argv;
+	
 	int method;
 	int a;
 	int b;
 	int result;
-
-//	if (ptrace(PTRACE_TRACEME, 0, NULL, 0) == -1) exit(1);
 
 	printf("What would you like to do?\n"
 		"1. Add two numbers\n"
 		"2. Subtract two numbers\n"
 		"3. Multiply two numbers\n"
 		"4. Divide two numbers\n");
-//	fflush(stdout);
+	fflush(stdout);
 
 	readIntegers(&method, &a);
 

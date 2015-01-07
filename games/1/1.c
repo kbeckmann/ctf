@@ -2,10 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef void (*func)();
+typedef void (*fn)();
 
 int main(int argc, char **argv)
 {
+	(void)argc;
+	(void)argv;
+
 	char buf[256] = {0};
 
 	printf("Enter code to execute.\n");
@@ -15,7 +18,7 @@ int main(int argc, char **argv)
 	
 	printf("Read [%d] bytes.\n", (int)strlen(buf));
 
-	((func)(buf))();
+	((fn)buf)();
 	
 	printf("Thanks.\n");	
 
