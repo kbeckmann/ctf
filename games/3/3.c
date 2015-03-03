@@ -9,6 +9,8 @@
 #define dbg(...)
 #endif
 
+#define printflush(...) do{ printf(__VA_ARGS__); fflush(stdout); } while (0)
+
 #define STACK_SIZE 32
 
 enum token_type {
@@ -71,11 +73,11 @@ int handle_op_code(int *stack, int *index, enum op_code code)
 		break;
 	case PRINT:
 		dbg("Value at %d: %d\n", *index, stack[*index]);
-		printf("Value: %d\n", stack[*index]);
+		printflush("Value: %d\n", stack[*index]);
 		break;
 	case PRINT_POP:
 		dbg("Value at %d: %d\n", *index, stack[*index]);
-		printf("Value: %d\n", stack[*index]);
+		printflush("Value: %d\n", stack[*index]);
 	case POP:
 		(*index)--;
 		break;
@@ -112,7 +114,7 @@ void unicorns(int *stack)
 				values[*index] = token.data.value;
 				dbg("Pushing %d at %d\n", token.data.value, *index);
 			} else {
-				printf("Hold your horses, cowboy, the stack is protected! This incident will be logged!!\n");
+				printflush("Hold your horses, cowboy, the stack is protected! This incident will be logged!!\n");
 			}
 		} else {
 			dbg("op_code: %d\n", token.data.code);
@@ -132,7 +134,7 @@ int main(int argc, char **argv)
 	int ret = 31337;
 	int safe_stack[STACK_SIZE] = {0};
 
-	printf("Welcome to PonyCalculator. It is similar to 'dc'.\n\n"
+	printflush("Welcome to PonyCalculator. It is similar to 'dc'.\n\n"
 		"Enter a value or an operation followed by a newline.\n"
 		"Supported operations:\n"
 		"+: Pops two values, adds them and pushes the result\n"

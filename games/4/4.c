@@ -3,6 +3,8 @@
 #include <string.h>
 #include <sys/ptrace.h>
 
+#define printflush(...) do{ printf(__VA_ARGS__); fflush(stdout); } while (0)
+
 typedef struct t_node t_node;
 typedef void (*fn_cleanup)(struct t_node *node);
 
@@ -57,13 +59,12 @@ char *read_checked_string()
 int print_menu()
 {
 	int ret = -1;
-	printf( "\n"
+	printflush( "\n"
 		"1. List entries\n"
 		"2. Add entry\n"
 		"3. Edit entry\n"
 		"4. Remove entry\n"
 		"0. Exit\n");
-	fflush(stdout);
 	read_integer(&ret);
 	return ret;
 }
@@ -79,8 +80,7 @@ void list_entries()
 	int i = 1;
 
 	while (node) {
-		printf("id: [%d]\nName: [%s]\nNumber: [%s]\n", i++, node->entry.name, node->entry.phone_number);
-		fflush(stdout);
+		printflush("id: [%d]\nName: [%s]\nNumber: [%s]\n", i++, node->entry.name, node->entry.phone_number);
 		node = node->next;
 	}
 }
@@ -91,12 +91,10 @@ void add_entry()
 
 	node->cleanup = free_node;
 
-	printf("Enter the name of the contact: ");
-	fflush(stdout);
+	printflush("Enter the name of the contact: ");
 	read_checked_string();
 	strcpy(node->entry.name, buf);
-	printf("Enter the phone number of the contact: ");
-	fflush(stdout);
+	printflush("Enter the phone number of the contact: ");
 	read_checked_string();
 	strcpy(node->entry.phone_number, buf);
 
@@ -110,9 +108,8 @@ void add_entry()
 	}
 	tail = node;
 
-	printf("Successfully added new entry with id[%d].\n[%s]:[%s]\n", 
+	printflush("Successfully added new entry with id[%d].\n[%s]:[%s]\n", 
 		entry_count, node->entry.name, node->entry.phone_number);
-	fflush(stdout);
 }
 
 void edit_entry()
@@ -121,8 +118,7 @@ void edit_entry()
 	int index = 0;
 	int i = 0;
 
-	printf("Enter the index of the entry: ");
-	fflush(stdout);
+	printflush("Enter the index of the entry: ");
 	read_integer(&index);
 	while (node) {
 		if (++i == index) {
@@ -132,22 +128,18 @@ void edit_entry()
 	}
 
 	if (!node) {
-		printf("Couldn't find the entry.\n");
-		fflush(stdout);
+		printflush("Couldn't find the entry.\n");
 		return;
 	}
 
-	printf("Enter the name of the contact: ");
-	fflush(stdout);
+	printflush("Enter the name of the contact: ");
 	read_checked_string();
 	strcpy(node->entry.name, buf);
-	printf("Enter the phone number of the contact: ");
-	fflush(stdout);
+	printflush("Enter the phone number of the contact: ");
 	read_checked_string();
 	strcpy(node->entry.phone_number, buf);
 
-	printf("New contact information stored.\n");
-	fflush(stdout);
+	printflush("New contact information stored.\n");
 }
 
 void clear_list()
@@ -168,8 +160,7 @@ void remove_entry()
 {
 	int index = -1;
 
-	printf("Enter the id of the entry to remove: ");
-	fflush(stdout);
+	printflush("Enter the id of the entry to remove: ");
 	read_integer(&index);
 
 	if (index > 0) {
@@ -225,7 +216,7 @@ void menu()
 		case 0:
 			return;
 		default:
-			printf("Unrecognized command, please try again.\n");
+			printflush("Unrecognized command, please try again.\n");
 			break;
 		}
 	}
