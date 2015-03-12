@@ -13,9 +13,7 @@ Binaries compiled for linux x86-64 are provided along with the source code. You 
 
 You can usually test your solutions by simply piping your data to the binary, `./solution.py | ./ctf`, or you can use netcat and sockets instead.
 
-* If your netcat supports the -e option, `nc -e ./ctf -l 1234` 
-* Otherwise `rm /tmp/f; mkfifo /tmp/f; cat /tmp/f | ./ctf -i 2>&1|nc -l  1234 > /tmp/f` works just as well.
-* Then connect to 127.0.0.1:1234 with your code.
-
 ## Cheat sheet
 I've provided cheat sheets for the first and second challenges just to get you on the right track. Only look if you're stuck!
+
+The provided solutions are using pwnlib which helps out a lot. Make sure you install it properly. 
