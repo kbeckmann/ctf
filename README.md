@@ -1,6 +1,7 @@
+![build status](https://travis-ci.org/kbeckmann/ctf.svg)
+
 ## CTF
 My CTF games.
-
 
 ## What is this?
 In order to learn more about how pwn challenges work I have created some challenges of my own and solved them.
