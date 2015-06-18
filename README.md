@@ -1,4 +1,4 @@
-![build status](https://travis-ci.org/kbeckmann/ctf.svg)
+![Build Status](https://travis-ci.org/kbeckmann/ctf.svg?branch=master)(https://travis-ci.org/kbeckmann/ctf)
 
 ## CTF
 My CTF games.
