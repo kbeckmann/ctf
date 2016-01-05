@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define printflush(...) do{ printf(__VA_ARGS__); fflush(stdout); } while (0)
+
 typedef void (*fn)();
 
 int main(int argc, char **argv)
@@ -11,17 +13,15 @@ int main(int argc, char **argv)
 
 	char buf[256] = {0};
 
-	printf("Enter code to execute.\n");
-	fflush(stdout);
+	printflush("Enter code to execute.\n");
 
 	fgets(buf, sizeof(buf), stdin);
-	
-	printf("Read [%d] bytes.\n", (int)strlen(buf));
+
+	printflush("Read [%d] bytes.\n", (int)strlen(buf));
 
 	((fn)buf)();
-	
-	printf("Thanks.\n");	
+
+	printflush("Thanks.\n");	
 
 	return 0;
 }
-
